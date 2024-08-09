@@ -24,10 +24,13 @@ p{
   line-height: 1.5;
 }
 
-.container{
-  width: 95%;
+.content{
+  width: 100vw;
+  height: 100vh;
   max-width: 120rem;
   margin: 0 auto;
+  display: grid;
+  place-content: center;
 }
 
 a{
@@ -63,4 +66,14 @@ img{
 }
 body > section {
   padding: 10rem 0;
+}
+
+
+/*Animations*/
+.pulse{
+  transition: all 0.2s ease-in-out;
+}
+
+.pulse:hover {
+  transform: scale(1.1);
 }
