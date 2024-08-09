@@ -44,7 +44,7 @@ li{
 }
 
 h1, h2, h3{
-  margin: 0 0 5rem 0;
+  margin: 0 0 1rem 0;
   font-weight: 700;
 }
 
@@ -76,4 +76,17 @@ body > section {
 
 .pulse:hover {
   transform: scale(1.1);
+}
+
+.showModal {
+  animation: showModal 0.3s ease-in-out;
+}
+
+@keyframes showModal {
+  from {
+    scale: 0;
+  }
+  to {
+    scale: 1;
+  }
 }
