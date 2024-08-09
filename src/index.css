@@ -82,6 +82,10 @@ body > section {
   animation: showModal 0.3s ease-in-out;
 }
 
+.closeModal {
+  animation: showModal 0.3s ease-in-out reverse;
+}
+
 @keyframes showModal {
   from {
     scale: 0;
