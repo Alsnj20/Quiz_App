@@ -28,7 +28,6 @@ export default function Home(): JSX.Element {
         </div>
 
       </div>
-      <h3>Name: {name}</h3>
       <ModalHome
         isOpen={showModal}
         onClose={() => setShowModal(false)}

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 
 interface Modal{
@@ -9,6 +10,14 @@ interface Modal{
 }
 
 export default function ModalHome({ isOpen, onClose, inputValue, setInputValue }: Modal): JSX.Element {
+
+  const navigate = useNavigate()
+
+  const handleStartQuiz = () => {
+    localStorage.setItem('name', inputValue);
+    onClose()
+    navigate('/quiz')
+  }
 
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +43,7 @@ export default function ModalHome({ isOpen, onClose, inputValue, setInputValue }
       bg-btnCorrect text-3xl text-white font-bold py-2 px-4 rounded-lg pulse
       hover:bg-btnCorrect-hover
       "
-                onClick={onClose}
+                onClick={handleStartQuiz}
               >
                 Start Quiz
               </button>
