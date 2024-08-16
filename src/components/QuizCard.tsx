@@ -20,6 +20,9 @@ export default function QuizCard({ index, question, nextQuestion }: QuizCardProp
   const checkAnswer = (answerCorrect: boolean, answerIndex: number) => {
     setSelectedAnswerIndex(answerIndex);
     setIsAnswered(true);
+    /* Score */
+
+
   };
 
   return (
@@ -34,12 +37,12 @@ export default function QuizCard({ index, question, nextQuestion }: QuizCardProp
           <div
             key={i}
             className={`rounded-lg p-2 px-4 w-full shadow-sm pulse ${isAnswered
-                ? i === selectedAnswerIndex
-                  ? answer.correct
-                    ? 'bg-btnCorrect'
-                    : 'bg-btnIncorrect'
-                  : 'bg-white'
+              ? i === selectedAnswerIndex
+                ? answer.correct
+                  ? 'bg-btnCorrect'
+                  : 'bg-btnIncorrect'
                 : 'bg-white'
+              : 'bg-white'
               }`}
             onClick={() => !isAnswered && checkAnswer(answer.correct, i)}
           >
