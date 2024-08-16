@@ -24,6 +24,7 @@ body{
 
 p{
   font-size: 2rem;
+  font-weight: 500;
   line-height: 1.5;
 }
 
@@ -86,6 +87,24 @@ body > section {
 
 .closeModal {
   animation: showModal 0.3s ease-in-out reverse;
+}
+
+.cardQuiz{
+  border-radius: 1.5rem;
+  padding: 2rem;
+  position: relative;
+  width: 100%;
+}
+.cardQuiz::before{
+  content: "";
+  position: absolute;
+  bottom: -1.5rem;
+  right: -1.5rem;
+  width: 100%;
+  height: 100%;
+  border-radius: 1.5rem;
+  padding: 1rem;
+  z-index: -1;
 }
 
 @keyframes showModal {

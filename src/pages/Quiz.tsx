@@ -17,7 +17,7 @@ export default function Quiz(): JSX.Element {
 
   return (
     <div className="content flex flex-col p-4 md:p-8">
-      <header className="flex justify-between items-center">
+      <header className="flex justify-between items-center h-[20vh]">
         <Button className="flex 
         justify-between items-center
         gap-4    
@@ -28,9 +28,12 @@ export default function Quiz(): JSX.Element {
         </Button>
         <Clock />
       </header>
-      <div className="m-4 flex justify-center items-center">
+      <div className="m-4 flex justify-center items-center
+      h-[70vh]
+      ">
         <div className="w-[70vw] md:w-1/2">
           {questions.map((question, index) => (
+            index === 0 &&
             <QuizCard
               key={index + 1}
               question={question}
