@@ -14,6 +14,9 @@ export default function Quiz(): JSX.Element {
     navigate('/')
   }
 
+  const nextQuestion = () => {
+    console.log('Next question')
+  }
 
   return (
     <div className="content flex flex-col p-4 md:p-8">
@@ -37,7 +40,7 @@ export default function Quiz(): JSX.Element {
             <QuizCard
               key={index + 1}
               question={question}
-              index={index + 1}
+              index={index + 1} nextQuestion={nextQuestion}
             />
           ))
           }
