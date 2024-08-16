@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 import ModalHome from '../components/ModalHome'
+import Button from '../components/Button'
 
 
 export default function Home(): JSX.Element {
@@ -18,13 +18,9 @@ export default function Home(): JSX.Element {
         <div className={`shadow-lg p-8 rounded-xl text-center`}>
           <h1 className="text-8xl">QuizApp!</h1>
           <p>Test your knowledge</p>
-          <button className="
-      bg-btnQuiz text-3xl text-white font-bold py-2 px-4 rounded-lg pulse
-      "
-            onClick={handleStart}
-          >
+          <Button event={handleStart}>
             Start Quiz
-          </button>
+          </Button>
         </div>
 
       </div>

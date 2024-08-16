@@ -17,10 +17,15 @@ export default tseslint.config({
     'react-refresh': reactRefresh,
   },
   rules: {
-    ...reactHooks.configs.recommended.rules,
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true },
-    ],
-  },
+    "linebreak-style": 0,
+    "react/jsx-props-no-spreading": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/prefer-default-export": 0,
+    "react/require-default-props": 0,
+    "jsx-a11y/label-has-associated-control": 0,
+    "@typescript-eslint/naming-convention": 0,
+    "eslint-disable no-param-reassign": 0,
+    "no-param-reassign": 0,
+    "no-console": 0
+  }
 })
