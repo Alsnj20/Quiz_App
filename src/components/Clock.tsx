@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import timeImage from '../img/time.png'
+import Button from './Button'
 
 
 export default function Clock(): JSX.Element {
@@ -17,17 +18,14 @@ export default function Clock(): JSX.Element {
   }, [])
 
   return (
-    <div className='text-center flex gap-2
-    justify-center
-    items-center bg-orange-300 
-    rounded-full
-    p-2
-    '>
+    <Button className="transition-none
+    flex justify-between items-center  gap-4
+    bg-[#a7d5db] text-text-secondary
+    hover:transform-none
+    ">
       <img src={timeImage}
-        alt='time' className='w-8 h-8 mx-auto' />
-      <h2 className='text-2xl'>
-        {time.toLocaleTimeString()}
-      </h2>
-    </div>
+        alt='time' className='w-10 h-auto' />
+      {time.toLocaleTimeString()}
+    </Button>
   )
 }

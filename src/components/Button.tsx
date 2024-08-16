@@ -1,19 +1,20 @@
 
 interface ButtonProps {
-  style?: string;
-  event: () => void;
-  children: string;
+  className?: string;
+  event?: () => void;
+  children: string | React.ReactNode
 }
 
 
 export default function Button(
-  { style, event, children }: ButtonProps
+  { className, event, children }: ButtonProps
 
 ): JSX.Element {
   return (
     <button className={`
-      bg-btnQuiz text-3xl text-white font-bold py-2 px-4 rounded-lg pulse
-      ${style}
+     font-bold text-5xl
+     p-4 rounded-lg pulse shadow-lg
+      ${className} 
       `}
       onClick={event}
     >

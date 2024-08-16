@@ -8,7 +8,7 @@ import Quiz from "./pages/Quiz";
 
 export default function App() {
   return (
-    <div className="content container">
+    <div className="content">
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
