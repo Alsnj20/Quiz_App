@@ -11,18 +11,27 @@ interface QuizCardProps {
     }[];
   };
   nextQuestion: () => void;
+  updateScore: (isCorrect: boolean) => void;
+  isAnswered: boolean;
 }
 
-export default function QuizCard({ index, question, nextQuestion }: QuizCardProps): JSX.Element {
-  const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number | null>(null);
-  const [isAnswered, setIsAnswered] = useState<boolean>(false);
+export default function QuizCard({ index, question, nextQuestion, updateScore, isAnswered }: QuizCardProps): JSX.Element {
 
-  const checkAnswer = (answerCorrect: boolean, answerIndex: number) => {
-    setSelectedAnswerIndex(answerIndex);
-    setIsAnswered(true);
-    /* Score */
+  const [indexAnswer, setIndexAnswer] = useState(-1);
 
 
+  const checkAnswer = (answerCorrect: boolean, index: number) => {
+    if (isAnswered) return;
+    setIndexAnswer(index);
+    updateScore(answerCorrect);
+  };
+
+  const changeColor = (indexMap: number) => {
+    if (indexAnswer === indexMap) {
+      console.log(question.answers[indexMap].correct);
+      return question.answers[indexMap].correct ? "btnCorrect" : "btnIncorrect";
+    }
+    return "white";
   };
 
   return (
@@ -36,20 +45,16 @@ export default function QuizCard({ index, question, nextQuestion }: QuizCardProp
         {question.answers.map((answer, i) => (
           <div
             key={i}
-            className={`rounded-lg p-2 px-4 w-full shadow-sm pulse ${isAnswered
-              ? i === selectedAnswerIndex
-                ? answer.correct
-                  ? 'bg-btnCorrect'
-                  : 'bg-btnIncorrect'
-                : 'bg-white'
-              : 'bg-white'
-              }`}
-            onClick={() => !isAnswered && checkAnswer(answer.correct, i)}
+            className={`rounded-lg p-2 px-4 w-full shadow-sm pulse bg-${changeColor(i)}`}
+            onClick={() => checkAnswer(answer.correct, i)}
           >
             <p>{answer.text}</p>
           </div>
         ))}
-        <Button className="bg-btnQuiz-variant text-text-primary w-max" event={nextQuestion}>
+        <Button className="bg-btnQuiz-variant text-text-primary w-max"
+          event={nextQuestion}
+          disabled={!isAnswered}
+        >
           Next
         </Button>
       </div>

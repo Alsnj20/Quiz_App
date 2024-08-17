@@ -7,10 +7,20 @@ import questions from "../questions";
 import QuizCard from "../components/QuizCard";
 import ArrowRight from "../components/ArrowRight";
 
+interface AnswerData {
+  question: number;
+  isCorrect: boolean;
+}
+
 export default function Quiz(): JSX.Element {
+
   const navigate = useNavigate();
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const [isAnswered, setIsAnswered] = useState(false);
+  const [dataScore, setDataScore] = useState<AnswerData[]>([]);
   const [animate, setAnimate] = useState(false);
+
 
   const prevBtn = () => {
     localStorage.removeItem('name');
@@ -18,17 +28,33 @@ export default function Quiz(): JSX.Element {
   };
 
   const nextQuestion = () => {
+    console.log("Next Question", isAnswered);
+    if (!isAnswered) return;
     setAnimate(true);
     setTimeout(() => {
-      setCurrentQuestionIndex((prevIndex) => {
+      setQuestionIndex((prevIndex) => {
         const nextIndex = prevIndex + 1;
         if (nextIndex >= questions.length) {
-          navigate('/results');
+          navigate("/result", { state: { dataScore } });
+          return prevIndex;
         }
+        setIsAnswered(false);
         return nextIndex;
       });
       setAnimate(false);
     }, 300);
+  };
+
+  const updateScore = (isCorrect: boolean) => {
+    setDataScore((prevData) => [
+      ...prevData,
+      {
+        question: questionIndex,
+        isCorrect: isCorrect,
+      },
+    ]);
+    setIsAnswered(true);
+    console.log("Score: ", dataScore);
   };
 
   return (
@@ -49,10 +75,12 @@ export default function Quiz(): JSX.Element {
       >
         <div className="w-[70vw] md:w-1/2">
           <QuizCard
-            key={currentQuestionIndex}
-            question={questions[currentQuestionIndex]}
-            index={currentQuestionIndex + 1}
+            key={questionIndex}
+            question={questions[questionIndex]}
+            index={questionIndex + 1}
             nextQuestion={nextQuestion}
+            updateScore={updateScore}
+            isAnswered={isAnswered}
           />
         </div>
       </div>

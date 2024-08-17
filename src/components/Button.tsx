@@ -3,11 +3,12 @@ interface ButtonProps {
   className?: string;
   event?: () => void;
   children: string | React.ReactNode
+  disabled?: boolean;
 }
 
 
 export default function Button(
-  { className, event, children }: ButtonProps
+  { className, event, children, disabled }: ButtonProps
 
 ): JSX.Element {
   return (
@@ -17,6 +18,7 @@ export default function Button(
       ${className} 
       `}
       onClick={event}
+      disabled={disabled}
     >
       {children}
     </button>
