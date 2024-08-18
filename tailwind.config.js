@@ -10,7 +10,7 @@ export default {
       colors: {
         btnCorrect: {
           DEFAULT: "#89E88C",
-          hover: "#6AB66C",
+          hover: "#7fe280",
         },
         btnIncorrect: {
           DEFAULT: "#fb7185",

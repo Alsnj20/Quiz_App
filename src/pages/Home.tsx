@@ -15,10 +15,16 @@ export default function Home(): JSX.Element {
   return (
     <div className='content'>
       <div className={`${showModal ? 'blur-sm' : ""}`}>
-        <div className={`shadow-lg p-8 rounded-xl text-center`}>
-          <h1 className="text-8xl">QuizApp!</h1>
+        <div className={`shadow-lg p-8 rounded-xl text-center
+        bg-btnQuiz
+        `}>
+          <h1 className="text-8xl
+          text-text-secondary
+          ">QuizApp!</h1>
           <p>Test your knowledge</p>
-          <Button event={handleStart}>
+          <Button event={handleStart}
+            className="bg-btnQuiz-variant text-text-primary"
+          >
             Start Quiz
           </Button>
         </div>
