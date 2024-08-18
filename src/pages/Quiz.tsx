@@ -1,11 +1,11 @@
 import Button from "../components/Button";
 import Clock from "../components/Clock";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-
-import questions from "../questions";
 import QuizCard from "../components/QuizCard";
 import ArrowRight from "../components/ArrowRight";
+import { Modal } from "../components/Modal";
+import questions from "../questions";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export interface AnswerData {
   question: number;
@@ -13,14 +13,41 @@ export interface AnswerData {
 }
 
 export default function Quiz(): JSX.Element {
-
   const navigate = useNavigate();
 
   const [questionIndex, setQuestionIndex] = useState(0);
   const [isAnswered, setIsAnswered] = useState(false);
   const [dataScore, setDataScore] = useState<AnswerData[]>([]);
   const [animate, setAnimate] = useState(false);
+  const [time, setTime] = useState(60); // Tiempo en segundos
+  const [showTimeEndModal, setShowTimeEndModal] = useState(false);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime((prevTime) => {
+        if (prevTime <= 1) {
+          setShowTimeEndModal(true);
+          clearInterval(interval);
+          return 0;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (time === 0) {
+      setShowTimeEndModal(true);
+    }
+  }, [time]);
+
+  const handleModalClose = () => {
+    navigate("/result", { state: { dataScore } });
+  };
 
   const prevBtn = () => {
     localStorage.removeItem('name');
@@ -28,7 +55,6 @@ export default function Quiz(): JSX.Element {
   };
 
   const nextQuestion = () => {
-    console.log("Next Question", isAnswered);
     if (!isAnswered) return;
     setAnimate(true);
     setTimeout(() => {
@@ -54,7 +80,6 @@ export default function Quiz(): JSX.Element {
       },
     ]);
     setIsAnswered(true);
-    console.log("Score: ", dataScore);
   };
 
   return (
@@ -67,7 +92,7 @@ export default function Quiz(): JSX.Element {
           <ArrowRight width="30" />
           Back
         </Button>
-        <Clock />
+        <Clock time={time} />
       </header>
       <div
         className={`m-4 flex justify-center items-center h-[70vh] transition-transform duration-300 ${animate ? 'animate-slide-out' : ''
@@ -84,6 +109,21 @@ export default function Quiz(): JSX.Element {
           />
         </div>
       </div>
+      {showTimeEndModal && (
+        <Modal
+          title="Finished Time!"
+          isOpen={showTimeEndModal}
+          onClose={handleModalClose}
+        >
+          <p className="text-center">Your time is up</p>
+          <Button
+            className="bg-btnQuiz-variant text-text-secondary"
+            event={handleModalClose}
+          >
+            Close
+          </Button>
+        </Modal>
+      )}
     </div>
   );
 }

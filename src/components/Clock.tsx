@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from 'react'
-
 import timeImage from '../img/time.png'
 import Button from './Button'
 
+interface ClockProps {
+  time: number
+}
 
-export default function Clock(): JSX.Element {
-  const [time, setTime] = useState(new Date())
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(new Date())
-    }, 1000)
+export default function Clock({ time }: ClockProps): JSX.Element {
 
-    return () => {
-      clearInterval(interval)
-    }
-  }, [])
+  const formatTime = (time: number) => {
+    const hours = Math.floor(time / 3600)
+    const hoursF = hours < 10 ? `0${hours}` : hours
+    const minutes = Math.floor(time / 60)
+    const minutesF = minutes < 10 ? `0${minutes}` : minutes
+    const seconds = time % 60
+    const secondsF = seconds < 10 ? `0${seconds}` : seconds
+    return `${hoursF}:${minutesF}:${secondsF}`
+  }
 
   return (
     <Button className="transition-none
@@ -25,7 +26,7 @@ export default function Clock(): JSX.Element {
     ">
       <img src={timeImage}
         alt='time' className='w-10 h-auto' />
-      {time.toLocaleTimeString()}
+      {formatTime(time)}
     </Button>
   )
 }

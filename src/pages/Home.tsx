@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import ModalHome from '../components/ModalHome'
 import Button from '../components/Button'
-
+import { ModalHomeProps } from '../components/ModalHome'
 
 export default function Home(): JSX.Element {
 
@@ -31,8 +31,11 @@ export default function Home(): JSX.Element {
 
       </div>
       <ModalHome
-        isOpen={showModal}
-        onClose={() => setShowModal(false)}
+        modalProps={{
+          title: 'Enter Your Name',
+          isOpen: showModal,
+          onClose: () => setShowModal(false)
+        }}
         inputValue={name}
         setInputValue={setName}
       />
