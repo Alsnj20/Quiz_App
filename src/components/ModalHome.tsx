@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 
-interface Modal{
+interface Modal {
   isOpen: boolean
   onClose: () => void
   inputValue: string
@@ -44,6 +44,13 @@ export default function ModalHome({ isOpen, onClose, inputValue, setInputValue }
       hover:bg-btnCorrect-hover
       "
                 onClick={handleStartQuiz}
+                onKeyDown={
+                  (e) => {
+                    if (e.key === 'Enter') {
+                      handleStartQuiz()
+                    }
+                  }
+                }
               >
                 Start Quiz
               </button>

@@ -1,5 +1,6 @@
 import Button from "./Button";
 import { useState } from "react";
+import Card from "./Card";
 
 interface QuizCardProps {
   index: number;
@@ -26,26 +27,24 @@ export default function QuizCard({ index, question, nextQuestion, updateScore, i
     updateScore(answerCorrect);
   };
 
-  const changeColor = (indexMap: number) => {
-    if (indexAnswer === indexMap) {
-      console.log(question.answers[indexMap].correct);
-      return question.answers[indexMap].correct ? "btnCorrect" : "btnIncorrect";
-    }
-    return "white";
-  };
-
   return (
-    <div className="cardQuiz shadow-lg bg-card before:bg-card before:shadow-md flex flex-col gap-2 p-4 md:p-20">
+    <Card color="bg-card">
       <h4 className="text-4xl font-semibold text-center text-text-tertiary">
         Question {index}
       </h4>
       <h2 className="text-5xl text-center font-semibold">{question.question}</h2>
-      <p>Select one:</p>
+      <p
+      >Select one:</p>
       <div className="flex flex-col justify-center items-center gap-4">
         {question.answers.map((answer, i) => (
           <div
             key={i}
-            className={`rounded-lg p-2 px-4 w-full shadow-sm pulse bg-${changeColor(i)}`}
+            className={`${indexAnswer === i
+              ? answer.correct
+                ? "bg-btnCorrect hover:bg-btnCorrect-hover"
+                : "bg-btnIncorrect hover:bg-btnIncorrect-hover"
+              : "bg-white"
+              } rounded-lg p-2 px-4 w-full shadow-sm pulse`}
             onClick={() => checkAnswer(answer.correct, i)}
           >
             <p>{answer.text}</p>
@@ -58,6 +57,6 @@ export default function QuizCard({ index, question, nextQuestion, updateScore, i
           Next
         </Button>
       </div>
-    </div>
+    </Card>
   );
 }

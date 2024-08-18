@@ -34,6 +34,8 @@ p{
   max-width: 120rem;
   margin: 0 auto;
   box-sizing: border-box;
+  display: grid;
+  place-content: center;
 }
 
 a{
@@ -105,6 +107,7 @@ body > section {
   border-radius: 1.5rem;
   padding: 1rem;
   z-index: -1;
+  background-color: inherit;
 }
 
 @keyframes showModal {

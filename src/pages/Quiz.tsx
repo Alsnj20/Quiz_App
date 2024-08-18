@@ -7,7 +7,7 @@ import questions from "../questions";
 import QuizCard from "../components/QuizCard";
 import ArrowRight from "../components/ArrowRight";
 
-interface AnswerData {
+export interface AnswerData {
   question: number;
   isCorrect: boolean;
 }
