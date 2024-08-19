@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { Modal, ModalProps } from './Modal'
+import Button from './Button'
 
 export interface ModalHomeProps {
   modalProps: ModalProps
@@ -32,30 +33,23 @@ export default function ModalHome(
         onChange={handleInputChange}
         className='border p-2 rounded w-full text-2xl'
       />
-      <div className='flex justify-evenly items-center flex-wrap gap-4'>
-        <button className="w-1/3
+      <div className='py-4 flex justify-between items-center gap-2'>
+        <Button className="w-1/2
       bg-btnCorrect text-3xl text-white font-bold py-2 px-4 rounded-lg pulse
       hover:bg-btnCorrect-hover
       "
-          onClick={handleStartQuiz}
-          onKeyDown={
-            (e) => {
-              if (e.key === 'Enter') {
-                handleStartQuiz()
-              }
-            }
-          }
+          event={handleStartQuiz}
         >
           Start Quiz
-        </button>
-        <button className=" w-1/3
+        </Button>
+        <Button className=" w-1/2
       bg-orange-400 text-3xl text-white font-bold py-2 px-4 rounded-lg pulse
       hover:bg-orange-500
       "
-          onClick={modalProps.onClose}
+          event={modalProps.onClose}
         >
           Cancel
-        </button>
+        </Button>
       </div>
     </Modal>
   )

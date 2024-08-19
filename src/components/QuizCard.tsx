@@ -1,9 +1,11 @@
 import Button from "./Button";
 import { useState } from "react";
 import Card from "./Card";
+import Bar from "./Bar";
 
 interface QuizCardProps {
   index: number;
+  totalQuestions: number;
   question: {
     question: string;
     answers: {
@@ -16,9 +18,12 @@ interface QuizCardProps {
   isAnswered: boolean;
 }
 
-export default function QuizCard({ index, question, nextQuestion, updateScore, isAnswered }: QuizCardProps): JSX.Element {
+export default function QuizCard({ index, totalQuestions, question, nextQuestion, updateScore, isAnswered }: QuizCardProps): JSX.Element {
 
   const [indexAnswer, setIndexAnswer] = useState(-1);
+
+  const progress = (index / totalQuestions) * 100;
+
 
 
   const checkAnswer = (answerCorrect: boolean, index: number) => {
@@ -33,6 +38,7 @@ export default function QuizCard({ index, question, nextQuestion, updateScore, i
         Question {index}
       </h4>
       <h2 className="text-5xl text-center font-semibold">{question.question}</h2>
+      <Bar width={progress} />
       <p
       >Select one:</p>
       <div className="flex flex-col justify-center items-center gap-4">

@@ -84,9 +84,11 @@ export default function Quiz(): JSX.Element {
 
   return (
     <div className="content flex flex-col p-4 md:p-8">
-      <header className="flex justify-between items-center h-[20vh]">
+      <header className="flex justify-between
+      items-center h-[15vh] md:h-[20vh] gap-4">
         <Button
-          className="flex justify-between items-center gap-4 bg-btnQuiz-variant text-text-secondary"
+          className="flex justify-between items-center
+          gap-4 bg-btnQuiz-variant text-text-secondary"
           event={prevBtn}
         >
           <ArrowRight width="30" />
@@ -98,10 +100,11 @@ export default function Quiz(): JSX.Element {
         className={`m-4 flex justify-center items-center h-[70vh] transition-transform duration-300 ${animate ? 'animate-slide-out' : ''
           }`}
       >
-        <div className="w-[70vw] md:w-1/2">
+        <div className="w-[70vw] md:w-full">
           <QuizCard
             key={questionIndex}
             question={questions[questionIndex]}
+            totalQuestions={questions.length}
             index={questionIndex + 1}
             nextQuestion={nextQuestion}
             updateScore={updateScore}

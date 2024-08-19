@@ -13,7 +13,7 @@ export default function Button(
 ): JSX.Element {
   return (
     <button className={`
-     font-bold text-5xl
+     font-bold text-3xl md:text-5xl
      p-4 rounded-lg pulse shadow-lg
       ${className} 
       `}

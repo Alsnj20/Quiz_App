@@ -18,7 +18,7 @@ export default function Home(): JSX.Element {
         <div className={`shadow-lg p-8 rounded-xl text-center
         bg-btnQuiz
         `}>
-          <h1 className="text-8xl
+          <h1 className="md:text-8xl
           text-text-secondary
           ">QuizApp!</h1>
           <p>Test your knowledge</p>
